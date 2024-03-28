@@ -1,5 +1,5 @@
 {
-  "name": "@yossydev/vite-rehype-toc",
+  "name": "@yossydev/rehype-toc",
   "version": "0.1.9",
   "exports": "./src/vite-rehype-toc.ts",
   "exclude": ["examples"]
