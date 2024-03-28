@@ -10,7 +10,7 @@ This Vite plugin automatically generates a table of contents (TOC) for your MDX 
 
 ## Example
 
-- HonoX
+- [HonoX](https://github.com/yossydev/vite-rehype-toc/tree/main/examples/honox)
 
 ## Getting Started
 
