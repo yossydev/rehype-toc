@@ -19,5 +19,5 @@ jobs:
           node-version: '20'
       - name: Install Dependencies
         run: npm ci
-      - run: npx jsr publish
+      - run: npm run publish
 
