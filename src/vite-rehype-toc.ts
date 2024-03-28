@@ -1,11 +1,18 @@
 import { visit } from "unist-util-visit";
 import { Root, Element, HeadingNode } from "./types";
 
-function rehypeTOC(): (tree: Root) => void {
+interface TOCOptions {
+  title?: string;
+  levels?: string[];
+}
+
+function rehypeTOC(options: TOCOptions = {}): (tree: Root) => void {
+  const { title = "目次", levels = ["h2", "h3"] } = options;
+
   return (tree) => {
     const headings: HeadingNode[] = [];
     visit(tree, "element", (node: Element) => {
-      if (node.tagName === "h2" || node.tagName === "h3") {
+      if (levels.includes(node.tagName)) {
         const id = createId(node);
         headings.push({ ...node, id } as HeadingNode);
         if (!node.properties) node.properties = {};
@@ -14,7 +21,7 @@ function rehypeTOC(): (tree: Root) => void {
     });
 
     if (headings.length) {
-      const toc = buildTOC(headings);
+      const toc = buildTOC(headings, title);
       tree.children.unshift(toc);
     }
   };
@@ -27,7 +34,7 @@ function createId(node: Element): string {
     .join("");
 }
 
-function buildTOC(headings: HeadingNode[]): Element {
+function buildTOC(headings: HeadingNode[], tocTitle: string): Element {
   const listItems: Element[] = headings.map((heading) => {
     const levelClass = getLevelClass(heading.tagName);
     return {
@@ -54,7 +61,7 @@ function buildTOC(headings: HeadingNode[]): Element {
         type: "element",
         tagName: "summary",
         properties: {},
-        children: [{ type: "text", value: "見出し - table of contents" }],
+        children: [{ type: "text", value: tocTitle }],
       },
       {
         type: "element",
@@ -72,8 +79,6 @@ function getLevelClass(tagName: string): string {
       return "toc-level-2";
     case "h3":
       return "toc-level-3";
-    case "h4":
-      return "toc-level-4";
     default:
       return "";
   }
