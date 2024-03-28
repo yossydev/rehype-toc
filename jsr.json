@@ -1,6 +1,6 @@
 {
   "name": "@yossydev/rehype-toc",
-  "version": "0.1.10",
+  "version": "0.1.0",
   "exports": "./src/rehype-toc.ts",
   "exclude": ["examples"]
 }
