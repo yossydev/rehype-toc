@@ -1,4 +1,4 @@
-# Vite Rehype TOC Plugin
+# Rehype TOC Plugin
 
 This Vite plugin automatically generates a table of contents (TOC) for your MDX files. When used in combination with rehypeHighlight, it enables both code syntax highlighting and table of contents generation, enhancing the readability of technical documents or blog posts.
 
