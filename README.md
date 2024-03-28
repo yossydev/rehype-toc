@@ -19,7 +19,9 @@ This Vite plugin automatically generates a table of contents (TOC) for your MDX 
 First, install the vite-rehype-toc plugin and its dependencies into your project.
 
 ```
-$ npm install vite-rehype-toc rehype-highlight
+$ npm install rehype-highlight
+
+$ npx jsr add @yossydev/vite-rehype-toc
 ```
 
 2. Update Your Vite Configuration
