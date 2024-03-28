@@ -1,5 +1,5 @@
 import { visit } from "unist-util-visit";
-import { Root, Element, HeadingNode } from "./types";
+import type { Element, HeadingNode, Root } from "./types";
 
 interface TOCOptions {
   title?: string;
@@ -28,10 +28,13 @@ function rehypeTOC(options: TOCOptions = {}): (tree: Root) => void {
 }
 
 function createId(node: Element): string {
-  return node.children
-    .filter((child: any) => child.type === "text")
-    .map((child: any) => child.value.replace(/\s+/g, "-").toLowerCase())
-    .join("");
+  return (
+    node.children
+      .filter((child) => child.type === "text")
+      // biome-ignore lint: The child is an Element | Text, but there is no type "value" in it, so it is handled as any.
+      .map((child: any) => child.value.replace(/\s+/g, "-").toLowerCase())
+      .join("")
+  );
 }
 
 function buildTOC(headings: HeadingNode[], tocTitle: string): Element {

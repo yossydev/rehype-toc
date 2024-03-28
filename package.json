@@ -5,11 +5,17 @@
   "main": "",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "publish": "npx jsr publish"
+    "publish": "npx jsr publish",
+    "format": "biome format --write .",
+    "lint": "biome lint .",
+    "lint:fix": "biome check --apply .",
+    "check": "biome check --apply .",
+    "check:ci": "biome ci ."
   },
   "author": "https://github.com/yossydev",
   "license": "MIT",
   "devDependencies": {
+    "@biomejs/biome": "1.6.3",
     "@types/node": "^20.11.30",
     "@types/unist": "^3.0.2",
     "rehype": "^13.0.1",
