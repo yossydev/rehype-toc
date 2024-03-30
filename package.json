@@ -22,5 +22,8 @@
     "typescript": "^5.4.3",
     "unist-util-visit": "^5.0.0",
     "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "jsr": "^0.12.1"
   }
 }
